@@ -5,6 +5,7 @@ var wins = 0;
 var losses = 0;
 var guesses = 10;
 var used = [];
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 // Create variables that hold references to the places in the HTML where we want to display things.
 var directionsText = document.getElementById("directions-text");
@@ -14,6 +15,7 @@ var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 var guessesText = document.getElementById("guesses-text");
 var usedText = document.getElementById("used-text");
+
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
@@ -27,17 +29,15 @@ document.onkeyup = function(event) {
     // Reworked our code from last step to use "else if" instead of lots of if statements.
 
     // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
-    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s") || (userGuess === "a") || (userGuess === "b") || (userGuess === "c")) {
 
-      if ((userGuess === "r" && computerGuess === "s") ||
-        (userGuess === "s" && computerGuess === "p") || 
-        (userGuess === "p" && computerGuess === "r")) {
+      if ((userGuess === computerGuess)) {
         wins++;
-      } else if (userGuess === computerGuess) {
+      } else if (userGuess !== computerGuess) {
         guesses--;
-      } else {
+      } if(guesses < 0) {
         losses++;
-      }
+      } if usedText[0].innerHTML = rightWord;
 
       // Hide the directions
       directionsText.textContent = "";
@@ -48,5 +48,6 @@ document.onkeyup = function(event) {
       winsText.textContent = "wins: " + wins;
       lossesText.textContent = "losses: " + losses;
       guessesText.textContent = "Guesses remaining: " + guesses;
+      usedText.textContent = "Your Guesses so far: " + used;
     }
   };
